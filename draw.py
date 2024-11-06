@@ -6,10 +6,10 @@ from PIL import Image, ImageDraw
 from datetime import datetime
 getcontext().prec = 30 #точность вычислений 28 значащих цифр
 
-file_name="_result_mask_circles_0000.txt"
+file_name="circles_0000.txt"
 image = Image.open('./targets_with_mask/circles_0000.png')
 with open(cf.path_to_mask+file_name,"r") as file:
-    getcontext().prec = 30 #точность вычислений 28 значащих цифр
+ 
     background = Image.new('RGB', (2560, 1440), (190, 134, 109))
     fig, ax = plt.subplots()
     ax.imshow(image)

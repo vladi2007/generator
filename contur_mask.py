@@ -12,6 +12,6 @@ def parse_contur_coords(path,result_list):
             for i in range(1,len(coords_list)-1,2):
                 x=Decimal(coords_list[i])*2560
                 y=Decimal(coords_list[i+1])*1440
-                if (640+20<x<1920-15) and (80+12<y<1360-2): #бывает что все равно вылезает за границы картинки - плюсую epsilon 
+                if (640+20<x<1920-15) and (80+14<y<1360-6): #бывает что все равно вылезает за границы картинки - плюсую epsilon 
                     result_list.append((x,y))
 parse_contur_coords(file,contur_mask_coords)                       

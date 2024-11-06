@@ -10,7 +10,7 @@ import contur_mask as cm
 import cv2
 from decimal import Decimal, getcontext
 
-getcontext().prec = 30 #точность вычислений 28 значащих цифр
+
 
 krug= Image.open(os.path.join("krug.png")) # маска кружка 
 lineyka= Image.open(os.path.join("lineyka.png")) # маска линейки
@@ -40,6 +40,11 @@ def help():
     roc.parse_coords(roc.orange_folder,roc.orange_number,roc.orange_txt,roc.orange)
     roc.calculate_circle_radius(roc.orange_folder,roc.orange_number,roc.orange,orange_data,result_list_of_coords_orange)
     roc.calculate_circle_radius(roc.grey_folder,roc.grey_number,roc.grey,grey_data,result_list_of_coords_grey)
+
+    roc.parse_coords(roc.grey_folder,roc.grey_number_new,roc.grey_txt,roc.grey,".png",".jpg")
+    roc.parse_coords(roc.orange_folder,roc.orange_number_new,roc.orange_txt,roc.orange,".png",".jpg")
+    roc.calculate_circle_radius(roc.orange_folder,roc.orange_number_new,roc.orange,orange_data,result_list_of_coords_orange,".png")
+    roc.calculate_circle_radius(roc.grey_folder,roc.grey_number_new,roc.grey,grey_data,result_list_of_coords_grey,".png")
 
 
 #генерируем список слипшихся окружностей вида 'x y r w'
@@ -129,7 +134,7 @@ def rotate_point(point, angle,centr):
 #вставляем картинку капли на фон
 def paste_image(cir,list_of_masks,image_folder,data,background,result_list_of_masks,result_count): 
         
-        getcontext().prec = 30#точность вычислений 28 значащих цифр
+
 
         # берем инфу о капле
         radius=cir[2]
@@ -217,7 +222,7 @@ def cropp_save_res_img(img_rgb,file_name):
 
 #сохраняем список масок в файл .txt
 def save_coords(file_name,result_list_of_masks): 
-    with open(cf.path_to_mask+f'_result_mask_{file_name[0:len(file_name)-4]}.txt', 'w') as file:
+    with open(cf.path_to_mask+f'{file_name[0:len(file_name)-4]}.txt', 'w') as file:
         for i in result_list_of_masks:
             print(i, file=file, sep="\n")
 
