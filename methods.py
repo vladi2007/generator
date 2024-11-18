@@ -64,9 +64,3 @@ def make_result_list(masks):
     for mask in masks:
         res_list.append(count_all_parameters_of_object_on_image(mask))
     return  res_list
-
-
-
-
-print(main("model.pt","circles_2000.png"))    
-print(len(main("model.pt","circles_2000.png")))
