@@ -2,9 +2,9 @@ import os
 import config
 
 # параметры окружности
-R_min =  0
+R_min = 0
 R_max = 75
-w_min = 1 # мин.ширина обводки
+w_min = 1  # мин.ширина обводки
 k_w_max = 0.2  # макс. ширина обводки k_w_max * R
 
 # параметры изображения
@@ -15,8 +15,12 @@ N_circles_max = 2521  # макс. число окружностей-капель
 
 # параметры датасета
 # пути сохраения входных и целевых изображений
-path_to_cirled_image = os.path.dirname(os.path.abspath(__file__)) + os.path.sep + 'targets' + os.path.sep
-path_to_target_image = os.path.dirname(os.path.abspath(__file__)) + os.path.sep + 'targets' + os.path.sep
-path_to_cirled_image_with_mask=os.path.dirname(os.path.abspath(__file__)) + os.path.sep + 'targets_with_mask' + os.path.sep
-path_to_mask=os.path.dirname(os.path.abspath(__file__)) + os.path.sep + 'result_masks' + os.path.sep
-N_images = 1 # общее количество изображений в датасете
+path_to_cirled_image = os.path.dirname(os.path.abspath(
+    __file__)) + os.path.sep + 'targets' + os.path.sep
+path_to_target_image = os.path.dirname(os.path.abspath(
+    __file__)) + os.path.sep + 'targets' + os.path.sep
+path_to_cirled_image_with_mask = os.path.dirname(os.path.abspath(
+    __file__)) + os.path.sep + 'targets_with_mask' + os.path.sep
+path_to_mask = os.path.dirname(os.path.abspath(
+    __file__)) + os.path.sep + 'result_masks' + os.path.sep
+N_images = 1  # общее количество изображений в датасете

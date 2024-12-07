@@ -18,7 +18,7 @@ def main(image_path, conf, iou, retina_masks, imgsz):
     # загружаем модель
     model = YOLO(model_path)
 
-    #ВОТ ТУТ КОСЯК режу черные поля у картинки, и на отрисовку у теюя юрчик идет ИСХОДНАЯ картинка, а не ПОРЕЗАННАЯ, и все мимо рисуется
+    # ВОТ ТУТ КОСЯК режу черные поля у картинки, и на отрисовку у теюя юрчик идет ИСХОДНАЯ картинка, а не ПОРЕЗАННАЯ, и все мимо рисуется
     image = find_filled_areas(image_path)
 
     # загружаем картинку в модель, imgsz = 640, еще есть параметр conf - тип float от 0 до 1 включительно,
@@ -28,7 +28,7 @@ def main(image_path, conf, iou, retina_masks, imgsz):
 
     # может быть что не нашло ни одной капли, нужно вернуть пустой список
     if result[0].masks == None:
-        return (0,[])
+        return (0, [])
 
     #  берем маски из обьекта result, xy - значит что координаты не нормамированные
     masks = result[0].masks.xy
@@ -45,7 +45,7 @@ def main(image_path, conf, iou, retina_masks, imgsz):
 
 # собираем кортеж для капли вида (маска, площадь, центр)
 def count_all_parameters_of_object_on_image(mask, multiplier_from_pixels_to_microns):
-    # делаем проверку что в маска капли это не пустой список и еще что есть минимум 4 точки уникальные 
+    # делаем проверку что в маска капли это не пустой список и еще что есть минимум 4 точки уникальные
     if len(mask.astype(set)) > 3:
         # замыкаем контур первым пикселем, чтобы полигон норм посчитало
         new_mask = np.vstack([mask, mask[0]])
@@ -54,8 +54,9 @@ def count_all_parameters_of_object_on_image(mask, multiplier_from_pixels_to_micr
         # берем центр
         center = polygon.centroid
         # считаем диаметер
-        diameter = find_diameter_in_pixels(new_mask, center) / multiplier_from_pixels_to_microns
-            
+        diameter = find_diameter_in_pixels(
+            new_mask, center) / multiplier_from_pixels_to_microns
+
         # возвращаем итоговый кортеж
         return (new_mask, diameter, (center.x, center.y))
     return None
@@ -81,7 +82,7 @@ def find_filled_areas(image_path):
 
         # Применяем пороговую фильтрацию, чтобы отделить заполненные области (например, значимые пиксели)
         # Порог для выделения "заполненных" областей (чем выше, тем светлее пиксели)
-        threshold = 30 # константу сам подобрал на ориг фотках
+        threshold = 30  # константу сам подобрал на ориг фотках
         bw_image = gray_image.point(lambda p: p > threshold and 255)
 
         # Используем getbbox(), чтобы найти ограничивающую рамку заполненных областей
