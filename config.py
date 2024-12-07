@@ -19,4 +19,4 @@ path_to_cirled_image = os.path.dirname(os.path.abspath(__file__)) + os.path.sep 
 path_to_target_image = os.path.dirname(os.path.abspath(__file__)) + os.path.sep + 'targets' + os.path.sep
 path_to_cirled_image_with_mask=os.path.dirname(os.path.abspath(__file__)) + os.path.sep + 'targets_with_mask' + os.path.sep
 path_to_mask=os.path.dirname(os.path.abspath(__file__)) + os.path.sep + 'result_masks' + os.path.sep
-N_images = 10 # общее количество изображений в датасете
+N_images = 1 # общее количество изображений в датасете
